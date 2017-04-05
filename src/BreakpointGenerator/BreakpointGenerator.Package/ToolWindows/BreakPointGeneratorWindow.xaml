@@ -1,0 +1,111 @@
+﻿<UserControl
+    x:Class="Microsoft.ALMRangers.BreakpointGenerator.ToolWindows.BreakPointGeneratorWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="clr-namespace:Microsoft.ALMRangers.BreakpointGenerator.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.14.0"
+    Name="MyToolWindow"
+    Background="{DynamicResource VsBrush.Window}"
+    Foreground="{DynamicResource VsBrush.WindowText}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
+            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+            <Setter Property="IsSelected" Value="{Binding IsInitiallySelected, Mode=OneTime}" />
+            <Setter Property="KeyboardNavigation.AcceptsReturn" Value="True" />
+            <Setter Property="common:VirtualToggleButton.IsVirtualToggleButton" Value="True" />
+            <Setter Property="common:VirtualToggleButton.IsChecked" Value="{Binding IsChecked}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static shell:VsBrushes.CommandBarTextActiveKey}}" />
+
+            <!--  Style for the selected item  -->
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <!--  Selected and has focus  -->
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static shell:VsBrushes.CommandBarTextActiveKey}}" />
+                </Trigger>
+                <!--  Mouse over  -->
+                <Trigger Property="IsMouseDirectlyOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0" Color="#FFFAFBFD" />
+                                <GradientStop Offset="1" Color="#FFEBF3FD" />
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static shell:VsBrushes.FileTabSelectedBackgroundKey}}" />
+                </Trigger>
+                <!--  Selected but does not have the focus  -->
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True" />
+                        <Condition Property="IsSelectionActive" Value="False" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static shell:VsBrushes.FileTabSelectedBackgroundKey}}" />
+                </MultiTrigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="2" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <HierarchicalDataTemplate x:Key="CheckBoxItemTemplate" ItemsSource="{Binding Children}">
+            <StackPanel Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}" Orientation="Horizontal">
+
+                <!--  These elements are bound to a FooViewModel object.  -->
+                <CheckBox
+                    Margin="2"
+                    VerticalAlignment="Center"
+                    Command="{Binding OnInsertBreakpointCommand}"
+                    CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}, Mode=OneWay}"
+                    Focusable="False"
+                    IsChecked="{Binding IsChecked}" />
+                <Image Margin="2" Source="{Binding Icon}" />
+                <ContentPresenter Margin="2,0" Content="{Binding Node.DisplayName}" />
+
+            </StackPanel>
+        </HierarchicalDataTemplate>
+        <Style TargetType="{x:Type ProgressBar}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static shell:VsBrushes.FileTabSelectedBackgroundKey}}" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <ProgressBar
+            Height="2"
+            Margin="0,1,0,0"
+            VerticalAlignment="Top"
+            IsIndeterminate="True"
+            Visibility="{Binding IsLoading}" />
+        <!--<ToolBar Grid.Row="0">
+                <Button Command="{Binding ExpandCommand}" Margin="3,0,0,0">
+                    <Image Source="../Resources/Expand.png" ></Image>
+                </Button>
+            <Button Command="{Binding CollapseCommand}" Margin="3,0,0,0">
+                <Image Source="../Resources/collapse.png"></Image>
+            </Button>
+            <Separator></Separator>
+            <Button Command="{Binding SettingsCommand}" Margin="3,0,0,0">
+                <Image Source="../Resources/options.png"></Image>
+            </Button>
+            </ToolBar>-->
+
+        <TreeView
+            x:Name="tree"
+            Margin="5"
+            Background="{DynamicResource {x:Static shell:VsBrushes.ToolWindowBackgroundKey}}"
+            BorderBrush="Transparent"
+            Foreground="Transparent"
+            ItemContainerStyle="{StaticResource TreeViewItemStyle}"
+            ItemTemplate="{StaticResource CheckBoxItemTemplate}"
+            ItemsSource="{Binding Tree}" />
+
+    </Grid>
+</UserControl>
