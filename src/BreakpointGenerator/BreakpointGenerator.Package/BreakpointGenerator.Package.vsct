@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<Extern href="stdidcmd.h"/>
+	<Extern href="vsshlids.h"/>
+
+	<Commands package="guidBreakpointGenerator_PackagePkg">
+		<Groups>
+			<!--Define a group so that it appears between separators-->
+			<Group guid="guidShowBreakpointGeneratorToolWindowCommand" id="grpidBreakpointGeneratorGroupDebugMenu" priority="0x0600">
+				<!--Debug menu of Visual Studio, identified by {C9DD4A58-47FB-11D2-83E7-00C04F9902C1} and 1025 -->
+				<Parent guid="guidDebugMenu" id="VSDebugMenu"/>
+			</Group>
+
+			<Group guid="guidShowBreakpointGeneratorToolWindowCommand" id="grpidBreakpointGeneratorGroup" priority="0x0600">
+				<Parent guid="guidSolutionMenu" id="SolutionContextMenu"/>
+			</Group>
+
+			<Group guid="guidShowBreakpointGeneratorToolWindowCommand" id="grpidBreakpointGeneratorGroup" priority="0x0600">
+				<Parent guid="guidProjectMenu" id="ProjectContextMenu"/>
+			</Group>
+			<Group guid="guidShowBreakpointGeneratorToolWindowCommand" id="grpidBreakpointGeneratorGroup" priority="0x0600">
+				<Parent guid="guidFileMenu" id="FileContextMenu"/>
+			</Group>
+
+			<Group guid="guidToolbar" id="toolbarGroup" priority="0x0000">
+				<Parent guid="guidToolbar" id="toolbar" />
+			</Group>
+		</Groups>
+
+		<Menus>
+			<Menu guid="guidToolbar" id="toolbar" type="ToolWindowToolbar">
+				<CommandFlag>DefaultDocked</CommandFlag>
+				<Strings>
+					<ButtonText>Test Toolbar</ButtonText>
+					<CommandName>Test Toolbar</CommandName>
+				</Strings>
+			</Menu>
+		</Menus>
+		<Buttons>
+
+			<Button guid="guidToolbar" id="expandAllCommand" priority="0x0100" type="Button">
+				<Parent guid="guidToolbar" id="toolbarGroup" />
+				<Icon guid="guidImages" id="bmpExpand"/>
+				<Strings>
+					<CommandName>Expand All</CommandName>
+					<ButtonText>Expand All</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="guidToolbar" id="collapseAllCommand" priority="0x0101" type="Button">
+				<Parent guid="guidToolbar" id="toolbarGroup" />
+				<Icon guid="guidImages" id="bmpCollapse"/>
+				<Strings>
+					<CommandName>Collapse All</CommandName>
+					<ButtonText>Collapse All</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="guidToolbar" id="optionsCommand" priority="0x0102" type="Button">
+				<Parent guid="guidToolbar" id="toolbarGroup" />
+				<Icon guid="guidImages" id="bmpOptions"/>
+				<Strings>
+					<CommandName>Options</CommandName>
+					<ButtonText>Options</ButtonText>
+				</Strings>
+			</Button>
+
+			<Button guid="guidShowBreakpointGeneratorToolWindowCommand" id="cmdidBreakpointGenerator" priority="0x0100" type="Button">
+				<Parent guid="guidShowBreakpointGeneratorToolWindowCommand" id="grpidBreakpointGeneratorGroup" />
+				<Icon guid="guidImages" id="bmpBreakpoint" />
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<CommandFlag>DefaultInvisible</CommandFlag>
+				<CommandFlag>TextChanges</CommandFlag>
+				<Strings>
+					<ButtonText>Generate Breakpoints</ButtonText>
+					<CommandName>Generate Breakpoints</CommandName>
+					<MenuText>Generate Breakpoints</MenuText>
+					<ToolTipText>Generate Breakpoints</ToolTipText>
+					<LocCanonicalName>Generate Breakpoints</LocCanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="guidShowBreakpointGeneratorToolWindowCommand" id="cmdidBreakpointGeneratorDebugMenu" priority="0x0100" type="Button">
+				<Parent guid="guidShowBreakpointGeneratorToolWindowCommand" id="grpidBreakpointGeneratorGroupDebugMenu" />
+				<Icon guid="guidImages" id="bmpBreakpoint" />
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<CommandFlag>DefaultInvisible</CommandFlag>
+				<CommandFlag>TextChanges</CommandFlag>
+				<Strings>
+					<ButtonText>Generate Breakpoints</ButtonText>
+					<CommandName>Generate Breakpoints</CommandName>
+					<MenuText>Generate Breakpoints</MenuText>
+					<ToolTipText>Generate Breakpoints</ToolTipText>
+					<LocCanonicalName>Generate Breakpoints</LocCanonicalName>
+				</Strings>
+			</Button>
+		</Buttons>
+
+		<Bitmaps>
+			<Bitmap guid="guidImages" href="Resources\Images.png" usedList="bmpBreakpoint, bmpExpand, bmpCollapse, bmpOptions"/>
+		</Bitmaps>
+
+	</Commands>
+
+	<KeyBindings>
+		<KeyBinding guid="guidShowBreakpointGeneratorToolWindowCommand" id="cmdidBreakpointGenerator"
+	            editor="guidVSStd97"
+	            key1="0x42"
+	            mod1="Control Alt Shift">
+		</KeyBinding>
+	</KeyBindings>
+	<Symbols>
+		<GuidSymbol name="guidBreakpointGenerator_PackagePkg" value="{d26b7824-0b3f-4a14-aaa0-0ae9853d272c}" />
+		<!--The value attribute guid should match the command's guid attribute. In this case it matches ShowBreakpointGeneratorToolWindowCommand's GUID-->
+		<GuidSymbol name="guidShowBreakpointGeneratorToolWindowCommand" value="{39466096-2290-4156-99E9-ADAE31AFA277}">
+			<IDSymbol name="grpidBreakpointGeneratorGroupDebugMenu" value="0x1010" />
+			<IDSymbol name="grpidBreakpointGeneratorGroup" value="0x1020" />
+			<!--The value attribute should match the unit field in the ShowBreakpointGeneratorToolWindowCommand class-->
+			<IDSymbol name="cmdidBreakpointGenerator" value="0x4121" />
+			<IDSymbol name="cmdidBreakpointGeneratorDebugMenu" value="0x4122" />
+		</GuidSymbol>
+		<GuidSymbol name="guidDebugMenu" value="{C9DD4A58-47FB-11D2-83E7-00C04F9902C1}">
+			<IDSymbol name="VSDebugMenu" value="1025"/>
+		</GuidSymbol>
+
+		<GuidSymbol name="guidSolutionMenu" value="{D309F791-903F-11D0-9EFC-00A0C911004F}">
+			<IDSymbol name="SolutionContextMenu" value="1043"/>
+		</GuidSymbol>
+		<GuidSymbol name="guidProjectMenu" value="{D309F791-903F-11D0-9EFC-00A0C911004F}">
+			<IDSymbol name="ProjectContextMenu" value="1026"/>
+		</GuidSymbol>
+		<GuidSymbol name="guidFileMenu" value="{D309F791-903F-11D0-9EFC-00A0C911004F}">
+			<IDSymbol name="FileContextMenu" value="1072"/>
+		</GuidSymbol>
+
+		<GuidSymbol name="guidToolbar" value="{F3DAEF55-3432-4BBF-9C35-7DE495A80406}">
+			<IDSymbol name="toolbarGroup" value="2000"/>
+			<IDSymbol name="toolbar" value="2001"/>
+			<IDSymbol name="expandAllCommand" value="2002" />
+			<IDSymbol name="collapseAllCommand" value="2003" />
+			<IDSymbol name="optionsCommand" value="2004" />
+		</GuidSymbol>
+
+		<GuidSymbol name="guidImages" value="{ed2cc9fb-0f01-46d8-adc2-a64bd91293bc}" >
+			<IDSymbol name="bmpBreakpoint" value="1" />
+			<IDSymbol name="bmpExpand" value="2" />
+			<IDSymbol name="bmpCollapse" value="3" />
+			<IDSymbol name="bmpOptions" value="4" />
+		</GuidSymbol>
+	</Symbols>
+</CommandTable>
