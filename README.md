@@ -3,7 +3,7 @@
 ![Build status](https://almrangers.visualstudio.com/_apis/public/build/definitions/7f3cfb9a-d1cb-4e66-9d36-1af87b906fe9/80/badge)
 
 <!-- Update the VS Gallery link after you upload the VSIX-->
-Download this extension from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=AndrewBHall-MSFT.BreakpointGenerator).
+Download this extension from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=VisualStudioALMRangers.BreakpointGenerator).
 
 ---------------------------------------
 
