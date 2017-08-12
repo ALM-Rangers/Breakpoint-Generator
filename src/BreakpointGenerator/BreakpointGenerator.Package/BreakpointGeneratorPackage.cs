@@ -22,13 +22,14 @@ using Microsoft.VisualStudio.Shell;
 namespace Microsoft.ALMRangers.BreakpointGenerator
 {
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", "1.2", IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideAutoLoad("{ADFC4E64-0397-11D1-9F4E-00A0C911004F}")]
     [ProvideService(typeof(SCommandManagerService), ServiceName = "CommandManagerService")]
     [ProvideToolWindow(typeof(BreakpointGeneratorToolWindow), MultiInstances = false, Transient = true)]
     [ProvideOptionPage(typeof(BreakpointGeneratorOptions), "Breakpoint Generator", "General", 0, 0, true)]
     [Guid("d26b7824-0b3f-4a14-aaa0-0ae9853d272c")]
+    [ProvideBindingPath]
     public sealed class BreakpointGeneratorPackage : Package
     {
         private BreakpointGeneratorToolWindow _breakpointGeneratorToolWindow;
