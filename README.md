@@ -29,11 +29,11 @@ The tool will by default generate TracePoints but can be configured to use a dif
 
 More information can be found in the [blog post announcing the tool](http://blogs.msdn.com/b/visualstudioalm/archive/2015/11/19/breakpoint-generator-extension.aspx).
 
-#Contributors
+# Contributors
 
 We thank the following contributors for this extension: [Jakob Ehn ](https://blogs.msdn.microsoft.com/willy-peter_schaub/2011/11/10/introducing-the-visual-studio-alm-rangers-jakob-ehn/) and [Utkarsh Shigihalli](https://blogs.msdn.microsoft.com/willy-peter_schaub/2013/07/05/introducing-the-visual-studio-alm-rangers-utkarsh-shigihalli/).
 
-#Contribute
+# Contribute
 Contributions to this project are welcome. Here is how you can contribute:  
 
 - Submit bugs and help us verify fixes  
